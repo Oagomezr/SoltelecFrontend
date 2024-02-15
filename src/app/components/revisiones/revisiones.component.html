@@ -1,0 +1,132 @@
+<div *ngIf="!confirm" class="all-page">
+    <h2>Vehiculo</h2>
+    <form  [formGroup]="vehiculeFormGroup"> <!-- (ngSubmit)="sendCode()" -->
+
+        <div class="columns">
+            <mat-form-field>
+                <mat-label >Placa</mat-label>
+                <input matInput formControlName="placa">
+                <mat-error *ngIf="vehiculeFormGroup.get('placa')?.errors?.['required']">Por favor ingresa la placa</mat-error>
+                <mat-error *ngIf="vehiculeFormGroup.get('placa')?.errors?.['pattern']">La placa no puede tener comas, numeros o caracteres especiales(#, $, ~, etc).</mat-error>
+            </mat-form-field>
+
+            <mat-form-field floatLabel="always">
+                <mat-label>modelo</mat-label>
+                <input matInput type="number" class="example-right-align" placeholder="2000" value="2000">
+            </mat-form-field>
+
+            <app-selector-field 
+                [label]="'Tipo de vehiculo'" 
+                [fields]="clasesVehiculos" 
+                [formSelector]="vehiculeFormGroup.controls.clase"
+                [errorLabel]="'Seleccione un tipo de vehiculo'"
+                ></app-selector-field>
+
+            <app-autocomplete-field 
+                [label]="'Marca'"
+                [options]="marcasVehiculos"
+                (sendSearch)="searchMarcas($event)"
+                (sendOption)="setMarca($event)"
+                ></app-autocomplete-field>
+
+
+            <app-autocomplete-field
+                [label]="'Linea'"
+                [options]="lineasVehiculo"
+                (sendSearch)="searchLineas($event)"
+                (sendOption)="setLinea($event)"
+                [disabled]="idMarca == 0"
+                ></app-autocomplete-field>
+            
+            <app-selector-field 
+                [label]="'Tipo de servicio'" 
+                [fields]="tiposServicios" 
+                [formSelector]="vehiculeFormGroup.controls.tipoServicio"
+                [errorLabel]="'Seleccione un tipo de servicio'"
+                ></app-selector-field>
+
+            <app-selector-field 
+                [label]="'ServiciosEspeciales'" 
+                [fields]="serviciosEspeciales" 
+                [formSelector]="vehiculeFormGroup.controls.servicioEspecial"
+                [errorLabel]="'Seleccione un tipo de servicio especial'"
+                ></app-selector-field>
+
+            <div>
+                <mat-form-field floatLabel="always">
+                    <mat-label>Tiempos del motor</mat-label>
+                    <input matInput type="number" class="example-right-align" placeholder="4" value="4">
+                </mat-form-field>
+
+                <mat-form-field floatLabel="always">
+                    <mat-label>Num. exostos</mat-label>
+                    <input matInput type="number" class="example-right-align" placeholder="1" value="1">
+                </mat-form-field>
+            </div>
+
+            <div>
+                <mat-form-field floatLabel="always">
+                    <mat-label>Ejes</mat-label>
+                    <input matInput type="number" class="example-right-align" placeholder="2" value="2">
+                </mat-form-field>
+
+                <app-selector-field 
+                    [label]="'Pais'" 
+                    [fields]="serviciosEspeciales" 
+                    [formSelector]="vehiculeFormGroup.controls.pais"
+                    [errorLabel]="'Seleccione un pais'"
+                    ></app-selector-field>
+            </div>
+
+            <mat-form-field>
+                <mat-label >Placa</mat-label>
+                <input matInput formControlName="placa">
+                <mat-error *ngIf="vehiculeFormGroup.get('placa')?.errors?.['required']">Por favor ingresa la placa</mat-error>
+                <mat-error *ngIf="vehiculeFormGroup.get('placa')?.errors?.['pattern']">La placa no puede tener comas, numeros o caracteres especiales(#, $, ~, etc).</mat-error>
+            </mat-form-field>
+        </div>
+
+        
+
+        <div class="columns">
+            
+        </div>
+    
+        <!-- <div class="names">
+            
+        
+            <mat-form-field>
+                <mat-label >Apellidos</mat-label>
+                <input matInput formControlName="lastName">
+                <mat-error *ngIf="userFormGroup.get('lastName')?.errors?.['required']">Por favor ingresa tu apellido</mat-error>
+                <mat-error *ngIf="userFormGroup.get('lastName')?.errors?.['pattern']">Los apellidos no pueden tener comas, numeros o caracteres especiales(#, $, ~, etc).</mat-error>
+            </mat-form-field>
+
+            <app-selector-field [formGender]="userFormGroup.controls.gender"></app-selector-field>
+
+            
+        </div> -->
+        
+        
+        <!-- <mat-form-field>
+            <mat-label >Correo electrónico</mat-label>
+            <input type="email" matInput formControlName="email">
+            <mat-error *ngIf="userFormGroup.get('email')?.errors?.['required']">Por favor ingresa el correo electrónico</mat-error>
+            <mat-error *ngIf="userFormGroup.get('email')?.errors?.['email']">El email debe contener un @</mat-error>
+            <mat-error *ngIf="userFormGroup.get('email')?.errors?.['uniqueValue']">Ese email actualmente se encuentra registrado</mat-error>
+        </mat-form-field>
+
+        <div class="birth-gender">
+            
+            <app-date-field [label]="'Fecha de nacimiento'" [formBirthDate]="userFormGroup.controls.birthdate"></app-date-field>
+            <app-selector-field [formGender]="userFormGroup.controls.gender"></app-selector-field>
+        </div>
+
+        <div class="celphone-password">
+            <app-phone-field [formCelphone]="userFormGroup.controls.celPhone"></app-phone-field>
+            <app-password-field [formPassword]="userFormGroup.controls.password"></app-password-field>
+        </div> 
+    
+        <button type="submit" mat-raised-button color="primary" [disabled]="userFormGroup.invalid">Crear usuario</button> -->
+    </form>
+</div>
