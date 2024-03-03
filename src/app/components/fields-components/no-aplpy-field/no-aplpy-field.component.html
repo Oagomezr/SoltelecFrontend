@@ -1,0 +1,7 @@
+<mat-form-field>
+    <mat-label>{{hide ? desactivatedLabel : label}}</mat-label>
+    <input matInput [formControl]="form">
+    <button mat-icon-button matSuffix (click)="togglePasswordVisibility($event)" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+        <mat-icon [style.color]="hide ? 'red' : 'green'">speed</mat-icon>
+    </button>
+</mat-form-field>

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RevisionesComponent } from './revisiones.component';
+import { NoAplpyFieldComponent } from './no-aplpy-field.component';
 
-describe('RevisionesComponent', () => {
-  let component: RevisionesComponent;
-  let fixture: ComponentFixture<RevisionesComponent>;
+describe('NoAplpyFieldComponent', () => {
+  let component: NoAplpyFieldComponent;
+  let fixture: ComponentFixture<NoAplpyFieldComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ RevisionesComponent ]
+      imports: [ NoAplpyFieldComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(RevisionesComponent);
+    fixture = TestBed.createComponent(NoAplpyFieldComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

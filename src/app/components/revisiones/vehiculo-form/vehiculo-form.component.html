@@ -1,0 +1,257 @@
+<div *ngIf="!confirm" class="all-page">
+    <form  [formGroup]="vehiculeFormGroup"> <!-- (ngSubmit)="sendCode()" -->
+
+        <div class="columns">
+            <div class="rows">
+                <mat-form-field class="fields">
+                    <mat-label >Placa</mat-label>
+                    <input matInput formControlName="placa">
+                    <mat-error *ngIf="vehiculeFormGroup.get('placa')?.errors?.['required']">Por favor ingresa la placa</mat-error>
+                    <mat-error *ngIf="vehiculeFormGroup.get('placa')?.errors?.['pattern']">La placa no puede tener comas, numeros o caracteres especiales(#, $, ~, etc).</mat-error>
+                </mat-form-field>
+                <mat-form-field class="fields" floatLabel="always">
+                    <mat-label>modelo</mat-label>
+                    <input matInput type="number" class="example-right-align" placeholder="2000" value="2000">
+                </mat-form-field>
+            </div>
+            
+            <div class="rows">
+                <app-selector-field 
+                style="width: 30%;"
+                class="fields"
+                [label]="'Tipo de vehiculo'" 
+                [fields]="clasesVehiculos" 
+                [formSelector]="vehiculeFormGroup.controls.clase"
+                [errorLabel]="'Seleccione un tipo de vehiculo'"
+                ></app-selector-field>
+
+                <app-selector-field 
+                style="width: 30%;"
+                class="fields"
+                [label]="'Tipo de servicio'" 
+                [fields]="tiposServicios" 
+                [formSelector]="vehiculeFormGroup.controls.tipoServicio"
+                [errorLabel]="'Seleccione un tipo de servicio'"
+                ></app-selector-field>
+
+                <app-selector-field 
+                style="width: 30%;"
+                class="fields"
+                [label]="'Servicio Especial'" 
+                [fields]="serviciosEspeciales" 
+                [formSelector]="vehiculeFormGroup.controls.servicioEspecial"
+                [errorLabel]="'Seleccione un tipo de servicio especial'"
+                ></app-selector-field>
+            </div>
+
+            <div class="rows">
+
+                <app-autocomplete-field 
+                class="fields"
+                [label]="'Marca'"
+                [options]="marcasVehiculos"
+                (sendSearch)="searchMarcas($event)"
+                (sendOption)="setMarca($event)"
+                ></app-autocomplete-field>
+
+                <app-autocomplete-field
+                class="fields"
+                [label]="'Linea'"
+                [options]="lineasVehiculo"
+                (sendSearch)="searchLineas($event)"
+                (sendOption)="setLinea($event)"
+                [disabled]="idMarca == 0"
+                ></app-autocomplete-field>
+
+            </div>
+            
+            <div class="rows">
+                <app-selector-field 
+                style="width: 30%;"
+                class="fields"
+                [label]="'Pais'" 
+                [fields]="serviciosEspeciales" 
+                [formSelector]="vehiculeFormGroup.controls.pais"
+                [errorLabel]="'Seleccione un pais'"
+                ></app-selector-field>
+
+                <app-selector-field 
+                style="width: 30%;"
+                class="fields"
+                [label]="'Tipo combustible'" 
+                [fields]="serviciosEspeciales" 
+                [formSelector]="vehiculeFormGroup.controls.pais"
+                [errorLabel]="'Seleccione un pais'"
+                ></app-selector-field>
+
+                <app-selector-field 
+                style="width: 30%;"
+                class="fields"
+                [label]="'Tipo llanta'" 
+                [fields]="serviciosEspeciales" 
+                [formSelector]="vehiculeFormGroup.controls.servicioEspecial"
+                [errorLabel]="'Seleccione un tipo de servicio especial'"
+                ></app-selector-field>
+            </div>
+            
+            <div class="rows">
+                <mat-form-field class="fields" floatLabel="always" style="width: 30%;">
+                    <mat-label>Tiempos del motor</mat-label>
+                    <input matInput type="number" class="example-right-align" placeholder="4" value="4">
+                </mat-form-field>
+
+                <mat-form-field class="fields" floatLabel="always" style="width: 30%;">
+                    <mat-label>Numero exostos</mat-label>
+                    <input matInput type="number" class="example-right-align" placeholder="1" value="1">
+                </mat-form-field>
+
+                <mat-form-field class="fields" floatLabel="always" style="width: 30%;">
+                    <mat-label>Ejes</mat-label>
+                    <input matInput type="number" class="example-right-align" placeholder="2" value="2">
+                </mat-form-field>
+            </div>
+
+            <div class="rows">
+                
+                <mat-form-field class="fields" style="width: 30%;">
+                    <mat-label>Peso bruto(Kg)</mat-label>
+                    <input matInput type="number" class="example-right-align">
+                </mat-form-field>
+
+                <mat-form-field class="fields" style="width: 30%;">
+                    <mat-label>Potencia</mat-label>
+                    <input matInput type="number" class="example-right-align">
+                </mat-form-field>
+
+                <app-no-aplpy-field
+                style="width: 30%;"
+                class="fields"
+                [label]="'Kilometraje'"
+                [desactivatedLabel]="'No funcional'">
+                </app-no-aplpy-field>
+            </div>
+
+            <div class="rows">
+                
+                <app-autocomplete-field 
+                style="width: 30%;"
+                class="fields"
+                [label]="'Tipo de carroceria'"
+                [options]="marcasVehiculos"
+                (sendSearch)="searchMarcas($event)"
+                (sendOption)="setMarca($event)"
+                ></app-autocomplete-field>
+
+                <app-autocomplete-field 
+                style="width: 30%;"
+                class="fields"
+                [label]="'Color'"
+                [options]="marcasVehiculos"
+                (sendSearch)="searchMarcas($event)"
+                (sendOption)="setMarca($event)"
+                ></app-autocomplete-field>
+
+                <app-autocomplete-field 
+                style="width: 30%;"
+                class="fields"
+                [label]="'Aseguradora'"
+                [options]="marcasVehiculos"
+                (sendSearch)="searchMarcas($event)"
+                (sendOption)="setMarca($event)"
+                ></app-autocomplete-field>
+
+            </div>
+
+            
+            
+        </div>
+
+        <div class="columns">
+
+            <div class="rows">
+                <div class="binary-options">
+                    <div class="slider-toggle">
+                        <div>Blindaje</div>
+                        <mat-slide-toggle class="toggle" ></mat-slide-toggle>
+                    </div>
+    
+                    <div class="slider-toggle">
+                        <div>Vidrios polarizados</div>
+                        <mat-slide-toggle class="toggle" ></mat-slide-toggle>
+                    </div>
+    
+                    <div class="slider-toggle">
+                        <div>Conversión GNV</div>
+                        <mat-slide-toggle class="toggle" ></mat-slide-toggle>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rows">
+
+                
+
+                <mat-form-field class="fields" floatLabel="always">
+                    <mat-label>Numero pasajeros(sin incluir el conductor)</mat-label>
+                    <input matInput type="number" class="example-right-align" placeholder="1" value="1">
+                </mat-form-field>
+
+                <app-date-field 
+                class="fields"
+                [label]="'Fecha de vencimiento GNV'">
+                </app-date-field>
+                
+            </div>
+
+            <mat-form-field class="fields" style="width: 92%;">
+                <mat-label >Numero del motor</mat-label>
+                <input matInput formControlName="placa">
+                <mat-error *ngIf="vehiculeFormGroup.get('placa')?.errors?.['required']">Por favor ingresa la placa</mat-error>
+                <mat-error *ngIf="vehiculeFormGroup.get('placa')?.errors?.['pattern']">La placa no puede tener comas, numeros o caracteres especiales(#, $, ~, etc).</mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="fields" style="width: 92%;">
+                <mat-label >Numero chasis</mat-label>
+                <input matInput formControlName="placa">
+                <mat-error *ngIf="vehiculeFormGroup.get('placa')?.errors?.['required']">Por favor ingresa la placa</mat-error>
+                <mat-error *ngIf="vehiculeFormGroup.get('placa')?.errors?.['pattern']">La placa no puede tener comas, numeros o caracteres especiales(#, $, ~, etc).</mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="fields" style="width: 92%;">
+                <mat-label>Numero de licencia</mat-label>
+                <input matInput type="number" class="example-right-align" >
+            </mat-form-field>
+
+            <mat-form-field class="fields" style="width: 92%;">
+                <mat-label>Numero de serie</mat-label>
+                <input matInput type="number" class="example-right-align" >
+            </mat-form-field>
+
+            
+
+            <div class="rows">
+
+                <app-date-field 
+                style="width: 30%;"
+                class="fields"
+                [label]="'Fecha expedición SOAT'">
+                </app-date-field>
+
+                <app-date-field 
+                style="width: 30%;"
+                class="fields"
+                [label]="'Fecha vencimiento SOAT'">
+                </app-date-field>
+
+                <app-date-field 
+                style="width: 30%;"
+                class="fields"
+                [label]="'Fecha matricula'">
+                </app-date-field>
+
+            </div>
+            
+        </div>
+    
+    </form>
+</div>

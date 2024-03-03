@@ -4,7 +4,7 @@
         <mat-option *ngFor="let field of fields" [value]="field.id">
             {{ field.description }}
         </mat-option>
-        <mat-option [value]="null">NO TIENE</mat-option>
+        <mat-option [value]="0">NO TIENE</mat-option>
     </mat-select>
     <mat-error>{{errorLabel}}</mat-error>
 </mat-form-field>

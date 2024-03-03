@@ -6,7 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
-import { RevisionesComponent } from './components/revisiones/revisiones.component';
+import { VehiculoFormComponent } from './components/revisiones/vehiculo-form/vehiculo-form.component';
 import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { PasswordFieldComponent } from './components/fields-components/password-field/password-field.component';
@@ -27,7 +27,7 @@ import { HttpClientModule } from '@angular/common/http';
     PasswordFieldComponent,
     BrowserAnimationsModule,
     LoginComponent,
-    RevisionesComponent,
+    VehiculoFormComponent,
   ],
   providers: [],
   bootstrap: [AppComponent]
